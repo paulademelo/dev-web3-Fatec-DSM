@@ -7,7 +7,6 @@ from .forms import CadastroForm
 def index(request):
     return render(request, 'index.html')
 
-
 def cadastro(request):
     data = {}
     if request.method == 'POST':
