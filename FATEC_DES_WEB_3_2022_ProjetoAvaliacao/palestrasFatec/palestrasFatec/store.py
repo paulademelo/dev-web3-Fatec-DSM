@@ -13,7 +13,7 @@ def create(request):
 def store(request):
     data = {}
     user = User.objects.create_user(
-        request.POST['user'], request.POST['curso'], request.POST['ano'], request.POST['semestre'])
+        request.POST['name'], request.POST['curso'], request.POST['ano'], request.POST['semestre'])
     user.first_name = request.POST['name']
     user.save()
     data['msg'] = 'Aluno cadastrado com sucesso!'

@@ -1,7 +1,7 @@
 from django import forms
 
 class CadastroForm(forms.Form):
-    nome = forms.CharField(max_length=50)
+    name = forms.CharField(max_length=50)
     curso = forms.CharField(max_length=50)
     ano = forms.CharField(max_length=50)
     semestre = forms.CharField(max_length=50)
