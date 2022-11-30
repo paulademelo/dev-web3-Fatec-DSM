@@ -5,8 +5,9 @@ from .models import CadastroModel, PalestraModels
 
 def index(request):
     palestras = PalestraModels.objects.all()
-    palestras = {"palestras" : palestras}
+    palestras = {"palestras": palestras}
     return render(request, 'index.html', palestras)
+
 
 def cadastrar(request):
     form = CadastroForm()
@@ -14,17 +15,17 @@ def cadastrar(request):
         form = CadastroForm(request.POST)
         # método para gravar
         if form.is_valid():
-            form = CadastroForm()
+            form.save()
             contexto = {"form": form}
             return render(request, 'form.html', contexto)
     else:
-        # fluxo para exibir o formulário vazio GET
+        # fluxo para exibir o for mulário vazio GET
         form = CadastroForm()
-        contexto = {'form' : form}
+        contexto = {'form': form}
         return render(request, 'form.html', contexto)
 
 
 def alunos_cadastrados(request):
-    data = {}
-    data['db'] = CadastroModel.objects.all()
-    return render(request, 'alunos.html', data)            
+    lista = CadastroModel.objects.all()
+    alunos = {"alunos": lista}
+    return render(request, 'alunos.html', alunos)

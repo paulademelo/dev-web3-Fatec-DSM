@@ -12,25 +12,25 @@
 
 <body>
     <br><br>
-    <h1 style="text-align: center;">Alunos cadastrados</h1><br>
+    <h1 style="text-align: center;">Presenças confirmadas</h1><br>
     <table class="table">
         <tr>
+            <th>Id</th>
             <th>Nome</th>
-            <th>Sobrenome</th>
             <th>Curso</th>
             <th>Semestre</th>
             <th>Ano</th>
         </tr>
         <tbody>
-            {% for dbs in db%}
-                    {% csrf_token %}
-                    <tr>
-                        <td>{{dbs.nome}}</td>
-                        <td>{{dbs.sobrenome}}</td>
-                        <td>{{dbs.curso}}</td>
-                        <td>{{dbs.semestre}}</td>
-                        <td>{{dbs.ano}}</td>
-                    </tr>
+            {% for dbs in db %}
+            {% csrf_token %}
+            <tr>
+                <td>{{dbs.id}}</td>
+                <td>{{dbs.nome}}</td>
+                <td>{{dbs.curso}}</td>
+                <td>{{dbs.ano}}</td>
+                <td>{{dbs.semestre}}</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
