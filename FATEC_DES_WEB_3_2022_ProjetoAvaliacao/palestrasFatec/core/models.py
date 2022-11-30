@@ -1,15 +1,19 @@
 from django.db import models
 
-
 class CadastroModel(models.Model):
-    nome = models.CharField(max_length=50)
+    nome = models.CharField(max_length=20)
+    sobrenome = models.CharField(max_length=50)
     curso = models.CharField(max_length=50)
-    ano = models.CharField(max_length=50)
-    semestre = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.nome + '=> ' + str(self.dia)
+    semestre = models.IntegerField()
+    ano = models.IntegerField()
     
-    class Meta:
-        verbose_name = 'Palestras'
-        verbose_name_plural = 'Palestras'
+    def __str__(self):
+        return self.nome  
+
+class PalestraModels(models.Model):
+    tema = models.CharField(max_length=50)
+    sala = models.IntegerField()
+    data = models.DateTimeField()
+     
+    def __str__(self):
+        return self.tema

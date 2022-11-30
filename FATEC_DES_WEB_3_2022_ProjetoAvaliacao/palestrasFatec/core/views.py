@@ -1,40 +1,30 @@
-from django.shortcuts import render
-from .models import CadastroModel
-from .forms import CadastroForm
+from django.shortcuts import render, redirect
+from forms import CadastroForm
+from .models import CadastroModel, PalestraModels
 
 
 def index(request):
-    return render(request, 'index.html')
+    palestras = PalestraModels.objects.all()
+    palestras = {"palestras" : palestras}
+    return render(request, 'index.html', palestras)
 
-
-def cadastro(request):
-    
-    data = {}
+def cadastrar(request):
+    form = CadastroForm()
     if request.method == 'POST':
         form = CadastroForm(request.POST)
+        # método para gravar
         if form.is_valid():
-            CadastroForm.objects.create(request.POST['name'],
-                                            request.POST['curso'],
-                                            request.POST['ano'],
-                                            request.POST['semestre'],
-                                            )
-            return render(request, 'cadastro.html', data)
-        else:
-            # Fluxo sem gravar
-            contexto = {'form': form}
-            data['msg'] = "Erro ao cadastrar, tente novamente mais tarde"
-            return render(request, 'index.html', data)
+            form = CadastroForm()
+            contexto = {"form": form}
+            return render(request, 'form.html', contexto)
     else:
-        # Fluxo para exibir o formulário vazio
+        # fluxo para exibir o formulário vazio GET
         form = CadastroForm()
-        contexto = {'form': form}
-        data['msg'] = "Formulário vazio"
-    return render(request, 'index.html')
+        contexto = {'form' : form}
+        return render(request, 'form.html', contexto)
 
 
-def store(request):
-    return render(request, 'cadastro.html')
-
-
-def aluno(request):
-    return render(request, 'aluno.html')
+def alunos_cadastrados(request):
+    data = {}
+    data['db'] = CadastroModel.objects.all()
+    return render(request, 'alunos.html', data)            
