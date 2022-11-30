@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from forms import CadastroForm
 from .models import CadastroModel, PalestraModels
 
@@ -19,7 +19,7 @@ def cadastrar(request):
             contexto = {"form": form}
             return render(request, 'form.html', contexto)
     else:
-        # fluxo para exibir o for mulário vazio GET
+        # fluxo para exibir o formulário vazio GET
         form = CadastroForm()
         contexto = {'form': form}
         return render(request, 'form.html', contexto)
