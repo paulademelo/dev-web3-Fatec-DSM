@@ -7,17 +7,16 @@ def index(request):
     return render(request, 'index.html')
 
 def cadastrar(request):
-    form = CadastroForm()
     if request.method == 'POST':
         form = CadastroForm(request.POST)
         # método para gravar
         if form.is_valid():
             CadastroModel.objects.create(**form.cleaned_data)
+            form = CadastroForm()
             contexto = {"form": form}
             return render(request, 'form.html', contexto)
     else:
         # fluxo para exibir o formulário vazio GET
-        form = CadastroForm()
         contexto = {'form': form}
         return render(request, 'form.html', contexto)
 
