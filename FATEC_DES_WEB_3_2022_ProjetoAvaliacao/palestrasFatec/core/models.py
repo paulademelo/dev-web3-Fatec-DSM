@@ -8,11 +8,3 @@ class CadastroModel(models.Model):
 
     def __str__(self):
         return self.nome  
-
-class PalestraModels(models.Model):
-    tema = models.CharField(max_length=50)
-    sala = models.IntegerField()
-    data = models.DateTimeField()
-
-    def __str__(self):
-        return self.tema
