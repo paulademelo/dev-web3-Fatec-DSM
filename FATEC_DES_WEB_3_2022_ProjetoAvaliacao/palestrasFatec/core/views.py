@@ -17,6 +17,7 @@ def cadastrar(request):
             return render(request, 'form.html', contexto)
     else:
         # fluxo para exibir o formulário vazio GET
+        form = CadastroForm()
         contexto = {'form': form}
         return render(request, 'form.html', contexto)
 
