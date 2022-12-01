@@ -8,7 +8,6 @@ def index(request):
     palestras = {"palestras": palestras}
     return render(request, 'index.html', palestras)
 
-
 def cadastrar(request):
     form = CadastroForm()
     if request.method == 'POST':
@@ -17,7 +16,7 @@ def cadastrar(request):
         if form.is_valid():
             form.save()
             contexto = {"form": form}
-            return render(request, 'form.html', contexto)
+            return redirect(request, 'form.html', contexto)
     else:
         # fluxo para exibir o formulário vazio GET
         form = CadastroForm()

@@ -5,7 +5,7 @@ class CadastroModel(models.Model):
     curso = models.CharField(max_length=50)
     semestre = models.IntegerField()
     ano = models.IntegerField()
-    
+
     def __str__(self):
         return self.nome  
 
